@@ -14,7 +14,7 @@ Version: February 2025
 
 
 (2) [`Algorithm analysis`](LMI_for_algorithm_analysis.pdf): 
-- main document [`Algorithm analysis`](LMI_for_algorithm_analysis.pdf) and its source [`Algorithm analysis`](LMI_for_algorithm_analysis.tex),
+- main document [`Algorithm analysis (pdf)`](LMI_for_algorithm_analysis.pdf) and its source [`Algorithm analysis (tex)`](LMI_for_algorithm_analysis.tex),
 - mathematica notebook for generating the LMI for the proximal-point method: [`proximal point`](Example_Proximal_Point.nb),
 - mathematica notebook for generating the LMI for the gradient method: [`gradient method`](Example_Gradient_Descent.nb).
 
