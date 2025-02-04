@@ -10,7 +10,7 @@ Version: February 2025
 
 #### Folder organization & files
 `
-(1) [`Sums-of-squares examples`](SOS.pdf):
+(1) [Sums-of-squares examples](SOS.pdf):
 
 
 (2) [`Algorithm analysis`](LMI_for_algorithm_analysis.pdf): 
