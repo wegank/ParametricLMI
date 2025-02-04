@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{theorem}
+\usepackage[margin=2cm]{geometry}
+\usepackage{hyperref}
+
+\title{Examples of parametric linear matrix inequalities for algorithm analysis\footnote{This note comes along as a complement to the paper ``\emph{Solving generic parametric linear matrix inequalities}'' by the same authors.}}
+\author{Simone Naldi\footnote{Université de Limoges, CNRS, XLIM,
+Limoges, France.}, Mohab Safey El Din\footnote{Sorbonne Université, CNRS, LIP6, Paris, France.}, Adrien Taylor\footnote{Inria, \'Ecole normale sup\'erieure, PSL Research University Paris, France.}, Weijia Wang\footnote{Sorbonne Université, CNRS, LIP6, Paris, France.}}
+
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\succeq}{\succcurlyeq}
+\renewcommand{\preceq}{\preccurlyeq}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\argmin}{\mathrm{argmin}}
+
+\begin{document}
+
+\maketitle
+
+This short note summarizes and contextualizes the parametric linear matrix inequalities for algorithm analysis that are used in the experimental section of the paper ``\emph{Solving generic parametric linear matrix inequalities}''. Those LMIs originate from the line of works~\cite{drori2014performance,taylor2017exact,taylor2017smooth,ryu2020operator}
+
+\section{Gradient descent}
+We let $f\in\mathcal{F}_{\mu,L}$ ($f$ is an $L$-smooth $\mu$-strongly convex function; with $0< \mu \leq L<\infty$ and $x_\star$ denotes the minimum of $f$) and a gradient method with step size:
+\[x_{k+1}=x_k-\gamma\nabla f(x_k).\]
+The following lines provide conditions for this gradient method to achieve a linear convergence rate of the following form:
+\begin{equation}\label{eq:GD_conv_func}
+f(x_{k+1})-f(x_\star)\leq \tau \left(f(x_k)-f(x_\star)\right)
+\end{equation}
+for any $d\in\mathbb{N}$, function $f\in\mathcal{F}_{\mu,L}$ and any $x_k,x_\star\in\mathbb{R}^d$ such that $\nabla f(x_\star)=0$.
+
+\paragraph{Linear matrix inequalities.} Those LMIs are developped using the technique from~\cite{taylor2017smooth}.
+\begin{enumerate}
+	\item A necessary and sufficient condition for~\eqref{eq:GD_conv_func} to hold for any $d\in\mathbb{N}$, function $f\in\mathcal{F}_{\mu,L}$ and any $x_\star,x_k,x_{k+1}\in\mathbb{R}^d$ such that $\nabla f(x_\star)=0$ and $x_{k+1}=x_k-\gamma\nabla f(x_k)$ is that
+	\begin{equation*}
+\begin{aligned}
+\exists &\lambda_1,\ldots,\lambda_6\geq 0:\\
+&\begin{pmatrix}
+-\lambda_2+\lambda_3+\lambda_4-\lambda_5+\tau\\\lambda_1+\lambda_2-\lambda_4-\lambda_6-1
+\end{pmatrix}=0\\
+&\begin{pmatrix}
+ \frac{\mu  L (\lambda_1+\lambda_3+\lambda_5+\lambda_6)}{L-\mu } & \star &  \star \\
+ -\frac{\lambda_5 \mu +L (\gamma  \mu  (\lambda_1+\lambda_6)+\lambda_3)}{L-\mu} & \frac{\lambda_2+\lambda_3+\lambda_4+\lambda_5+\gamma  \mu  (\gamma  L (\lambda_1+\lambda_2+\lambda_4+\lambda_6)-2 \lambda_2)-2 \gamma  \lambda_4 L}{L-\mu } & \star \\
+ -\frac{\lambda_6 \mu +\lambda_1 L}{L-\mu } & \frac{\gamma  \lambda_4 \mu +\gamma  \lambda_6 \mu -\lambda_2-\lambda_4+\gamma  L (\lambda_1+\lambda_2)}{L-\mu } & \frac{\lambda_1+\lambda_2+\lambda_4+\lambda_6}{L-\mu }
+\end{pmatrix}\succeq 0
+\end{aligned}
+\end{equation*}
+where $\star$ denotes symmetric entries.
+
+This LMI has $6$ variables $\lambda_1,\lambda_2,\ldots,\lambda_6\geq 0$ (can be simplified to $4$ using linear equalities) and $4$ parameters ($L,\mu,\tau,\gamma$).
+	\item A standard simplification to this LMI consists in searching only feasible points satisfying $\lambda_4=\lambda_5=\lambda_6=0$
+	\begin{equation*}
+\begin{aligned}
+\exists &\lambda_1,\lambda_2,\lambda_3\geq 0:\\
+&\begin{pmatrix}-\lambda_2+\lambda_3+\tau\\\lambda_1+\lambda_2-1
+\end{pmatrix}=0\\
+&\begin{pmatrix}
+ \frac{\mu  L (\lambda_1+\lambda_3)}{L-\mu } & \star & \star \\
+ -\frac{L (\gamma  \lambda_1 \mu +\lambda_3)}{L-\mu} & \frac{\lambda_2+\lambda_3+\gamma  \mu  (\gamma  L (\lambda_1+\lambda_2)-2 \lambda_2)}{L-\mu } & \star \\
+ \frac{\lambda_1 L}{\mu -L} & \frac{\gamma  L (\lambda_1+\lambda_2)-\lambda_2}{L-\mu } & \frac{\lambda_1+\lambda_2}{L-\mu }
+\end{pmatrix}\succeq 0
+\end{aligned}
+\end{equation*}
+which is then a sufficient condition for~\eqref{eq:GD_conv_func} to hold for any $d\in\mathbb{N}$, function $f\in\mathcal{F}_{\mu,L}$ and any $x_\star,x_k,x_{k+1}\in\mathbb{R}^d$ such that $\nabla f(x_\star)=0$ and $x_{k+1}=x_k-\gamma\nabla f(x_k)$.
+\end{enumerate}
+
+\paragraph{Standard specializations.} A few classical instances (specialization) are given by:
+\begin{itemize}
+	\item step size: pick either $\gamma=\frac1L$ or $\gamma=\frac2{L+\mu}$ (the latter is ``optimal'' and results in improved valid values for $\tau$)
+	\item parameter class: pick $L=1$ and $\mu\in(0,1)$.
+\end{itemize}
+A classical choice is thus to consider the LMI with a single parameter ($\mu$), potentially two parameters if we treat $\tau$ as a parameter (instead of optimizing over it). 
+
+Note that the smallest possible $\tau$ is provided by $\max\left\{(1-\gamma\mu)^2,(1-\gamma L)^2\right\}$.
+
+
+\section{Proximal point}
+We let $f\in\mathcal{F}_{\mu,\infty}$ ($f$ is $\mu$-strongly convex (closed, proper) function; with $\mu>0$ and $x_\star$ denotes the minimum of $f$) and we consider a proximal-point method with step size $\gamma$:
+\begin{equation}\label{eq:ppm}
+x_{k+1}=\mathrm{prox}_{\gamma f}(x_k)\triangleq\underset{x}{\argmin} \left\{ \gamma f(x)+\frac{1}{2}\|x-x_k\|^2_2\right\}
+\end{equation}
+which can be rewritten as $x_{k+1}=x_k-\gamma s_{k+1}$ with $s_{k+1}\in\partial f(x_{k+1})$ ($\partial f$ denotes the subdifferential of $f$; so the proximal-point algorithm corresponds to an implicit gradient method when $f$ is differentiable---we use the gradient of the point where we arrive).
+The following lines provide conditions for the proximal-point method to achieve a linear convergence rate of the following form:
+\begin{equation}\label{eq:ppm_conv_dist}
+\|x_{k+1}-x_\star\|^2_2 \leq \tau \|x_{k}-x_\star\|^2_2.
+\end{equation}
+
+\paragraph{Linear matrix inequalities.} Those LMIs are developped using the technique from~\cite{taylor2017exact}. A necessary and sufficient condition for~\eqref{eq:ppm_conv_dist} to hold for any $d\in\mathbb{N}$, function $f\in\mathcal{F}_{\mu,L}$ and any $x_\star,x_k,x_{k+1}\in\mathbb{R}^d$ such that $\nabla f(x_\star)=0$ and~\eqref{eq:ppm} is that
+\begin{equation*}
+\begin{aligned}
+\exists &\lambda_1,\lambda_2\geq 0:\\
+&\lambda_1=\lambda_2\\
+&\begin{pmatrix}
+\lambda_1 \mu +\lambda_2 \mu +2 \tau -2 & -\gamma  (\lambda_1 \mu +\lambda_2 \mu -2)-\lambda_1 \\
+ -\gamma  (\lambda_1 \mu +\lambda_2 \mu -2)-\lambda_1 & \gamma  (\gamma  (\lambda_1 \mu +\lambda_2 \mu -2)+2 \lambda_1)
+\end{pmatrix}\succeq 0.
+\end{aligned}
+\end{equation*}
+This LMI has $2$ variables (can be simplified to $1$ using the linear equality $\lambda_1=\lambda_2$) and $2$ parameters ($\gamma,\mu$).
+
+\paragraph{Standard specializations.} A few classical instances (specialization/simplifications) are given by:
+\begin{itemize}
+	\item we can consider that the only parameter of the corresponding LMI is $\eta=\gamma\mu$ (i.e., we can fix arbitrarily $\gamma=1$).
+\end{itemize}
+Note that the smallest possible $\tau$ is provided by $\frac{1}{(1+\mu\gamma)^2}$.
+\section{Douglas-Rachford splitting}
+
+Consider the (monotone) inclusion problem  
+\[ \text{Find } {x\in\mathbb{R}^d}:\, 0\in A(x)+B(x),\]
+where $A,B:\mathbb{R}^d\rightrightarrows \mathbb{R}^d$ (multi-valued mapping from $\mathbb{R}^d$ to possibly subsets of $\mathbb{R}^d$) are maximal monotone operators, see, e.g.,~\cite{bauschke2017} for the general context of monotone operators.
+
+
+
+
+The (relaxed) Douglas-Rachford operator, introduced in~\cite{douglas1956numerical}, is given by $T=I_d-\theta J_B+\theta J_A(2J_B-I)$, with $\theta\in (0,2)$ a relaxation parameter, $I_d$ the identity operator on $\mathbb{R}^d$ and $J_A, J_B$ the resolvents of $A$ and $B$ (i.e., $J_A:\mathbb{R}^d\rightarrow \mathbb{R}^d$ with $J_A(x)=(I+A)^{-1}(x)$, which are surjective by maximal monotonicity of $A$, see~\cite{minty1962monotone}). The convergence properties of this algorithm are studied under various assumptions on $A$ and $B$ (see, e.g.,~\cite{giselsson2017tight} or~\cite{moursi2019douglas}, and discussions in~\cite{ryu2020operator}). A classical way to proceed is to study situations in which one can find $\rho\in(0,1)$ (\emph{contraction factor}) such that
+\[ \|Tx-Ty\|_2^2\leq \rho \|x-y\|_2^2.\]
+Possible simplifications: consider the case $\rho=1$ (meaning: we are interested in the whole region of parameters for which we can converge--formally, we are interested in $\rho<1$). Another one is $\theta=1$ (classical Douglas-Rachford without relaxation).
+
+Note that solutions to those LMIs are provided in~\cite[Section 4]{ryu2020operator}.
+\subsection{Monotone Lipschitz + strongly monotone}
+
+Let $A$ be $\mu$-strongly monotone and $B$ be monotone and $L$-Lipschitz: $\rho$ is a valid contraction factor if there exists  $\lambda^A_\mu\geq 0$, $\lambda^B_L\geq 0$, and $\lambda^B_\mu\geq 0$ such that
+\[ S= \begin{pmatrix}\rho ^2+\lambda^B_L-1 & \frac{\lambda^A_\mu}{2}-\theta  & \theta -\lambda^B_L-\frac{\lambda^B_\mu}{2} \\
+ \frac{\lambda^A_\mu}{2}-\theta  & -\theta ^2+\lambda^A_\mu+\lambda^A_\mu \mu  & \theta ^2-\lambda^A_\mu \\
+ \theta -\lambda^B_L-\frac{\lambda^B_\mu}{2} & \theta ^2-\lambda^A_\mu & -\lambda^B_L L^2-\theta ^2+\lambda^B_L+\lambda^B_\mu \\
+\end{pmatrix}\succeq 0,
+\]
+which has 4 parameters ($0<\mu<L<\infty$ and $\rho$, $\theta$) and 3 variables ($\lambda^A_\mu,\lambda^B_L,\lambda^B_\mu\geq0$).
+
+This LMI was proposed in~\cite[SM3.2.1]{ryu2020operator} and its solution is described in~\cite[Theorem 4.3]{ryu2020operator} (the proofs require about $8$ pages in the appendix, the parameter regions are illustrated in~\cite[Figure 4]{ryu2020operator}).
+
+\subsection{Cocoercive + strongly monotone}
+Let $A$ be $\mu$-strongly monotone and $B$ be $\beta$-cocoercive: $\rho$ is a valid contraction factor if there exists $\lambda^A_\mu\geq 0$, and $\lambda_\beta^B\geq 0$ such that
+\[
+S=\begin{pmatrix}
+\rho ^2+\beta  \lambda_\beta^B-1 & -\theta+\frac{\lambda^A_\mu}{2}  & \theta -(\frac{1}{2}+\beta)\lambda_\beta^B \\
+ -\theta+\frac{\lambda^A_\mu}{2}  & -\theta ^2+(1+\mu)\lambda^A_\mu  & \theta ^2-\lambda^A_\mu \\
+ \theta -(\frac{1}{2}+\beta)\lambda_\beta^B & \theta ^2-\lambda^A_\mu & -\theta ^2+(1+\beta)\lambda_\beta^B 
+\end{pmatrix}
+\succeq 0,
+\]
+which has 4 parameters ($0< \mu\leq \beta<\infty$, and $\rho$, $\theta$) and 2 variables ($\lambda^A_\mu,\lambda_\beta^B\geq0$).
+
+This LMI was proposed in~\cite[SM3.1.1.]{ryu2020operator} and its solution is described in~\cite[Theorem 4.1]{ryu2020operator} (the proofs require about $13$ pages in the appendix, the parameter regions are illustrated in~\cite[Figure 3]{ryu2020operator}).
+
+\bibliography{mybib}{}
+\bibliographystyle{abbrv}
+\end{document}
+
+
