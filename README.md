@@ -18,10 +18,10 @@ Version: February 2025
 - mathematica notebook for generating the LMI for the proximal-point method: [proximal point](Example_Proximal_Point.nb),
 - mathematica notebook for generating the LMI for the gradient method: [gradient method](Example_Gradient_Descent.nb).
 
-#### Authors & Contributors
-- [**Simone Naldi**](https://www.unilim.fr/pages_perso/simone.naldi/) (author)
-- [**Mohab Safey El Din**](https://polsys.lip6.fr/~safey/) (author)
-- [**Adrien Taylor**](http://www.di.ens.fr/~ataylor/) (author)
-- [**Weijia Wang**](https://perso.lip6.fr/Weijia.Wang/) (author)
+#### Authors
+- [**Simone Naldi**](https://www.unilim.fr/pages_perso/simone.naldi/) 
+- [**Mohab Safey El Din**](https://polsys.lip6.fr/~safey/)
+- [**Adrien Taylor**](http://www.di.ens.fr/~ataylor/) 
+- [**Weijia Wang**](https://perso.lip6.fr/Weijia.Wang/)
 
 
