@@ -1,0 +1,158 @@
+\documentclass[nonacm]{acmart}
+
+\usepackage{bm}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\y}{\bm{y}}
+
+\title{Examples of LMIs}
+
+\author{Simone Naldi}
+\affiliation{
+    \institution{Université de Limoges, CNRS, XLIM}
+    \city{Limoges}
+    \country{France}
+}
+
+\author{Mohab Safey El Din}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Adrien Taylor}
+\affiliation{
+    \institution{Inria, École normale supérieure, PSL Research University}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Weijia Wang}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
+
+\begin{document}
+
+\maketitle
+
+In this document, we provide explicit examples of LMIs
+that are considered in our work.
+For their context and motivation,
+we refer to the documents provided in the same repository.
+
+\begin{itemize}
+    \item \textsf{MKN11} denotes the LMI defined by
+          \begin{align*}
+              A  & =
+              \begin{pmatrix}
+                  \varepsilon                         & \frac{1}{2}+\frac{3 \varepsilon}{2} & 0           & 0                          & -x_{24}                    & 0                       \\
+                  \frac{1}{2}+\frac{3 \varepsilon}{2} & 1+3 \varepsilon                     & 0           & x_{24}                     & 0                          & 0                       \\
+                  0                                   & 0                                   & \varepsilon & 0                          & 0                          & 0                       \\
+                  0                                   & x_{24}                              & 0           & 3 \varepsilon              & -\frac{3}{2}+3 \varepsilon & \frac{3 \varepsilon}{2} \\
+                  -x_{24}                             & 0                                   & 0           & -\frac{3}{2}+3 \varepsilon & 3 \varepsilon              & \frac{3 \varepsilon}{2} \\
+                  0                                   & 0                                   & 0           & \frac{3 \varepsilon}{2}    & \frac{3 \varepsilon}{2}    & 1+\varepsilon           \\
+              \end{pmatrix} \\
+              \y & =\varepsilon, \quad \x=x_{24}.
+          \end{align*}
+    \item \textsf{RBN11} denotes the LMI defined by
+          \begin{align*}
+              A  & =
+              \begin{pmatrix}
+                  1                      & -\frac{1}{2}+2\epsilon & 0 & 0                               & -x_{24}                         & 0                      \\
+                  -\frac{1}{2}+2\epsilon & -1+4\epsilon           & 0 & x_{24}                          & 0                               & 0                      \\
+                  0                      & 0                      & 1 & 0                               & 0                               & 0                      \\
+                  0                      & x_{24}                 & 0 & -1+4\epsilon                    & \frac{3}{2}+\frac{3}{2}\epsilon & -\frac{1}{2}+2\epsilon \\
+                  -x_{24}                & 0                      & 0 & \frac{3}{2}+\frac{3}{2}\epsilon & -1+4\epsilon                    & -\frac{1}{2}+2\epsilon \\
+                  0                      & 0                      & 0 & -\frac{1}{2}+2\epsilon          & -\frac{1}{2}+2\epsilon          & 1
+              \end{pmatrix} \\
+              \y & =\varepsilon, \quad \x=x_{24}.
+          \end{align*}
+    \item \textsf{GRD24} denotes the LMI defined by
+          \begin{equation*}
+              A=
+              \begin{pmatrix}
+                  \frac{\mu  L (\lambda_1+\lambda_3+\lambda_5+\lambda_6)}{L-\mu }                & \star                                                                                                                                                       & \star                                                  \\
+                  -\frac{\lambda_5 \mu +L (\gamma  \mu  (\lambda_1+\lambda_6)+\lambda_3)}{L-\mu} & \frac{\lambda_2+\lambda_3+\lambda_4+\lambda_5+\gamma  \mu  (\gamma  L (\lambda_1+\lambda_2+\lambda_4+\lambda_6)-2 \lambda_2)-2 \gamma  \lambda_4 L}{L-\mu } & \star                                                  \\
+                  -\frac{\lambda_6 \mu +\lambda_1 L}{L-\mu }                                     & \frac{\gamma  \lambda_4 \mu +\gamma  \lambda_6 \mu -\lambda_2-\lambda_4+\gamma  L (\lambda_1+\lambda_2)}{L-\mu }                                            & \frac{\lambda_1+\lambda_2+\lambda_4+\lambda_6}{L-\mu }
+              \end{pmatrix},
+          \end{equation*}
+          and $\y=(\mu,\tau)$,
+          $\x=(\lambda_1,\ldots,\lambda_6)$,
+          with the constraints
+          $\lambda_1,\ldots,\lambda_6 \geq 0$,
+          $\gamma=\frac{2}{L+\mu}$, $L=1$, $0<\mu<1$, and
+          \begin{equation*}
+              \begin{cases}
+                  -\lambda_2+\lambda_3+\lambda_4-\lambda_5+\tau & = 0  \\
+                  \lambda_1+\lambda_2-\lambda_4-\lambda_6-1     & = 0,
+              \end{cases}
+          \end{equation*}
+          so that the LMI has 4 free variables,
+          say $\lambda_1,\lambda_4,\lambda_5,\lambda_6$,
+          and 2 parameters.
+    \item \textsf{GRD23} denotes the LMI obtained
+          by setting $\lambda_6=0$ in \textsf{GRD24}.
+    \item \textsf{GRD14} denotes the LMI obtained
+          by moving $\tau$ from $\y$ to $\x$ in \textsf{GRD21}.
+    \item \textsf{GRD22} denotes the LMI obtained
+          by setting $\lambda_5=0$ in \textsf{GRD23}.
+    \item \textsf{GRD13} denotes the LMI obtained
+          by moving $\tau$ from $\y$ to $\x$ in \textsf{GRD21}.
+    \item \textsf{GRD21} denotes the LMI obtained
+          by setting $\lambda_4=0$ in \textsf{GRD22}.
+    \item \textsf{GRD12} denotes the LMI obtained
+          by moving $\tau$ from $\y$ to $\x$ in \textsf{GRD21}.
+    \item
+          \textsf{PPM31} denotes the LMI defined by
+          \begin{equation*}
+              A=
+              \begin{pmatrix}
+                  2\lambda\mu+2\tau-2            & -\gamma(2\lambda\mu-2)-\lambda         \\
+                  -\gamma(2\lambda\mu-2)-\lambda & \gamma(\gamma(2\lambda\mu-2)+2\lambda)
+              \end{pmatrix},
+          \end{equation*}
+          and $\y=(\mu,\gamma,\tau)$, $\x=\lambda$,
+          with the constraints $\mu>0$, $\gamma>0$, $\tau>0$.
+    \item \textsf{PPM21} denotes the LMI obtained
+          by setting $\gamma=1$ in \textsf{PPM31}.
+    \item \textsf{DRS42} denotes the LMI proposed in
+          \cite[SM3.1.1.]{ryu2020operator},
+          defined by
+          \begin{equation*}
+              A=
+              \begin{pmatrix}
+                  \rho^2+\beta\lambda_\beta^B-1             & -\theta+\frac{\lambda^A_\mu}{2} & \theta-(\frac{1}{2}+\beta)\lambda_\beta^B \\
+                  -\theta+\frac{\lambda^A_\mu}{2}           & -\theta^2+(1+\mu)\lambda^A_\mu  & \theta^2-\lambda^A_\mu                    \\
+                  \theta-(\frac{1}{2}+\beta)\lambda_\beta^B & \theta^2-\lambda^A_\mu          & -\theta^2+(1+\beta)\lambda_\beta^B
+              \end{pmatrix},
+          \end{equation*}
+          and $\y=(\mu,\beta,\rho,\theta)$,
+          $\x=(\lambda^A_\mu,\lambda_\beta^B)$,
+          with the constraints $\mu>0$, $0<\theta<2$, $\beta-\mu\geq 0$.
+    \item \textsf{DRS32} denotes the LMI obtained
+          by setting $\theta=1$ in \textsf{DRS42}.
+    \item \textsf{DRS43} denotes the LMI proposed in
+          \cite[SM3.2.2.]{ryu2020operator}, defined by
+          \begin{equation*}
+              A=
+              \begin{pmatrix}
+                  \rho^2+\lambda^B_L-1                       & \frac{\lambda^A_\mu}{2}-\theta            & \theta-\lambda^B_L-\frac{\lambda^B_\mu}{2}          \\
+                  \frac{\lambda^A_\mu}{2}-\theta             & -\theta^2+\lambda^A_\mu+\lambda^A_\mu \mu & \theta^2-\lambda^A_\mu                              \\
+                  \theta-\lambda^B_L-\frac{\lambda^B_\mu}{2} & \theta^2-\lambda^A_\mu                    & -\lambda^B_L L^2-\theta^2+\lambda^B_L+\lambda^B_\mu
+              \end{pmatrix},
+          \end{equation*}
+          and $\y=(\mu,L,\rho,\theta)$,
+          $\x=(\lambda^A_\mu,\lambda^B_L,\lambda^B_\mu)$,
+          with $\mu>0$, $L-\mu>0$.
+    \item \textsf{DRS33} denotes the LMI obtained
+          by setting $\theta=1$ in \textsf{DRS43}.
+\end{itemize}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,322 @@
+\documentclass[nonacm]{acmart}
+
+\usepackage{bm}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\y}{\bm{y}}
+
+\title{Sum of squares}
+
+\author{Simone Naldi}
+\affiliation{
+    \institution{Université de Limoges, CNRS, XLIM}
+    \city{Limoges}
+    \country{France}
+}
+
+\author{Mohab Safey El Din}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Adrien Taylor}
+\affiliation{
+    \institution{Inria, École normale supérieure, PSL Research University}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Weijia Wang}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Motzkin polynomial}
+
+The form
+\begin{equation*}
+    p = z^6-3x^2y^2z^2+x^2y^4+x^4y^2 \in \mathbb{R}[x,y,z]_6
+\end{equation*}
+is globally nonnegative
+(by the arithmetic-geometric mean inequality \cite{motzkin1967arithmetic}),
+but it is easily seen by looking at its Newton polytope
+that it is not a sum of squares of polynomials (SOS).
+Let us perturb $p$ with a term of the form $\varepsilon(x^2+y^2+z^2)^3$,
+where $\varepsilon$ is an unknown parameter.
+This gives
+\begin{equation*}
+    \begin{aligned}
+        p_\varepsilon
+         & = p+\varepsilon(x^2+y^2+z^2)^3                                                        \\
+         & = \varepsilon x^6 + (1+3\varepsilon)x^4y^2 + (1+3\varepsilon)x^2y^4 + \varepsilon y^6
+        + 3\varepsilon x^4z^2 + 3\varepsilon x^2z^4 + 3\varepsilon y^4z^2 + 3\varepsilon y^2z^4 + (6\varepsilon-3) x^2y^2z^2 + (1+\varepsilon) z^6.
+    \end{aligned}
+\end{equation*}
+
+Now, $p_\varepsilon$ is SOS if and only if
+$p_\varepsilon = q_1^2+\cdots+q_r^2$,
+with $q_i \in \mathbb{R}[x,y,z]_3$, and moreover, such that
+\begin{equation*}
+    2 \text{NP}(q_i) = \text{NP}(p_\varepsilon) =
+    \text{conv}(\{(6,0,0), (4,2,0), (2,4,0), (0,6,0), (4,0,2), (2,0,4), (0,4,2), (0,2,4), (2,2,2), (0,0,6)\}).
+\end{equation*}
+
+In other words, we can choose the $q_i$ satisfying
+\begin{equation*}
+    \begin{aligned}
+        \text{NP}(q_i)
+         & = \text{conv}(\{(3,0,0), (2,1,0), (1,2,0), (0,3,0), (2,0,1), (1,0,2), (0,2,1), (0,1,2), (1,1,1), (0,0,3)\}) = \\
+         & = \text{conv}(\{(3,0,0), (1,2,0), (0,3,0), (2,0,1), (0,2,1), (0,0,3)\}).
+    \end{aligned}
+\end{equation*}
+because
+\begin{equation*}
+    \begin{aligned}
+        (1,1,1) & = \frac13(3,0,0)+\frac13(0,3,0)+\frac13(0,0,3) \\
+        (2,1,0) & = \frac12(3,0,0)+\frac12(1,2,0)                \\
+        (0,1,2) & = \frac12(0,0,3)+\frac12(0,2,1)                \\
+        (1,0,2) & = \frac12(0,0,3)+\frac12(2,0,1).
+    \end{aligned}
+\end{equation*}
+
+Consider now the monomial basis
+\begin{equation*}
+    \beta = (x^3, xy^2, y^3, x^2z, y^2z, z^3).
+\end{equation*}
+
+One has $p_\varepsilon$ SOS if and only if there exists a matrix
+$W = (w_{a,b})_{a,b\in \beta} \in \mathbb{S}_6(\mathbb{R})$,
+such that $W \succeq 0$, and that $p_\varepsilon = \beta^T W \beta$.
+This yields the following $6 \times 6$ parametric LMI to be solved:
+\begin{equation*}
+    \begin{aligned}
+        W             & =
+        \begin{bmatrix}
+            w_{300,300} & w_{300,120} & w_{300,030} & w_{300,201} & w_{300,021} & w_{300,003} \\
+            \star       & w_{120,120} & w_{120,030} & w_{120,201} & w_{120,021} & w_{120,003} \\
+            \star       & \star       & w_{030,030} & w_{030,201} & w_{030,021} & w_{030,003} \\
+            \star       & \star       & \star       & w_{201,201} & w_{201,021} & w_{201,003} \\
+            \star       & \star       & \star       & \star       & w_{021,021} & w_{021,003} \\
+            \star       & \star       & \star       & \star       & \star       & w_{003,003} \\
+        \end{bmatrix}
+        \succeq 0                                                                                  \\
+        p_\varepsilon & = \beta^T W \beta \hspace{1cm} \Leftarrow \text{ linear conditions on } W.
+    \end{aligned}
+\end{equation*}
+
+After reducing variables according to linear equations,
+we get the following parametric LMI:
+\begin{equation*}
+    \begin{bmatrix}
+        \varepsilon & \frac12+\frac32\varepsilon & 0           & 0            & w_{300,021}          & 0                   \\
+        \star       & 1+3\varepsilon             & 0           & -w_{300,021} & 0                    & 0                   \\
+        \star       & \star                      & \varepsilon & 0            & 0                    & 0                   \\
+        \star       & \star                      & \star       & 3\varepsilon & 3\varepsilon-\frac32 & \frac32\varepsilon  \\
+        \star       & \star                      & \star       & \star        & 3\varepsilon         & \frac32 \varepsilon \\
+        \star       & \star                      & \star       & \star        & \star                & 1+\varepsilon       \\
+    \end{bmatrix}
+    \succeq 0.
+\end{equation*}
+
+For $\varepsilon=1$, one has the matrix
+\begin{equation*}
+    \begin{bmatrix}
+        1           & 2            & 0 & 0            & w_{300,021} & 0       \\
+        2           & 4            & 0 & -w_{300,021} & 0           & 0       \\
+        0           & 0            & 1 & 0            & 0           & 0       \\
+        0           & -w_{300,021} & 0 & 3            & \frac32     & \frac32 \\
+        w_{300,021} & 0            & 0 & \frac32      & 3           & \frac32 \\
+        0           & 0            & 0 & \frac32      & \frac32     & 2       \\
+    \end{bmatrix}
+\end{equation*}
+For $w_{300,021}=0$, one gets the psd matrix
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 2 & 0 & 0       & 0       & 0       \\
+        2 & 4 & 0 & 0       & 0       & 0       \\
+        0 & 0 & 1 & 0       & 0       & 0       \\
+        0 & 0 & 0 & 3       & \frac32 & \frac32 \\
+        0 & 0 & 0 & \frac32 & 3       & \frac32 \\
+        0 & 0 & 0 & \frac32 & \frac32 & 2       \\
+    \end{bmatrix}
+\end{equation*}
+and from the Cholesky decompositions
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 2 & 0 \\
+        2 & 4 & 0 \\
+        0 & 0 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 0 \\
+        2 & 0 \\
+        0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1 & 2 & 0 \\
+        0 & 0 & 1
+    \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+    \begin{bmatrix}
+        3       & \frac32 & \frac32 \\
+        \frac32 & 3       & \frac32 \\
+        \frac32 & \frac32 & 2       \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \sqrt{3}           & 0       & 0 \\
+        \frac{\sqrt{3}}{2} & \frac32 & 0 \\
+        \frac{\sqrt{3}}{2} & \frac12 & 1 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \sqrt{3} & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
+        0        & \frac32            & \frac12            \\
+        0        & 0                  & 1                  \\
+    \end{bmatrix}
+\end{equation*}
+one gets the SOS decomposition of $p_1$:
+\begin{equation*}
+    \begin{aligned}
+        p_1 & = p+(x^2+y^2+z^2)^3 =                                                                            \\
+            & =
+        \begin{bmatrix}
+            x^3 & xy^2 & y^3
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 \\
+            2 & 0 \\
+            0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 2 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            x^3 \\ xy^2 \\ y^3
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            x^2z & y^2z & z^3
+        \end{bmatrix}
+        \begin{bmatrix}
+            \sqrt{3}           & 0       & 0 \\
+            \frac{\sqrt{3}}{2} & \frac32 & 0 \\
+            \frac{\sqrt{3}}{2} & \frac12 & 1 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            \sqrt{3} & \frac{\sqrt{3}}{2} & \frac{\sqrt{3}}{2} \\
+            0        & \frac32            & \frac12            \\
+            0        & 0                  & 1                  \\
+        \end{bmatrix}
+        \begin{bmatrix}
+            x^2z \\ y^2z \\ z^3
+        \end{bmatrix}=                                                                                     \\
+            & = (x^3+2xy^2)^2 + y^6 + \left(\sqrt{3}x^2z+\frac{\sqrt{3}}{2}y^2z+\frac{\sqrt{3}}{2}z^3\right)^2
+        + \left(\frac32 y^2z+\frac12 z^3\right)^2+z^6.
+    \end{aligned}
+\end{equation*}
+
+
+In the above example, we destroyed the sparsity of the Motzkin polynomial.
+Of course, one could cheat,
+by using the information that the bad monomial in the Motzkin
+polynomial is $-3x^2y^2z^2$ and simply perturbing along this direction:
+\begin{equation*}
+    p_\varepsilon = p + \varepsilon x^2y^2z^2 = z^6+(\varepsilon-3)x^2y^2z^2+x^2y^4+x^4y^2
+\end{equation*}
+and one directly sees that $p_\varepsilon$ is SOS
+if and only if $\varepsilon \geq 3$.
+Indeed, whenever $\varepsilon < 3$,
+using Newton polytope arguments one gets that $p_\varepsilon$ cannot be SOS
+(indeed, this is true if and only if $\varepsilon-3$ is SOS in $\mathbb{R}$,
+thus nonnegative).
+In this case, the parametric LMI is diagonal
+(with monomial basis $(z^3, xyz, xy^2, x^2y)$ for the SOS summands):
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 0             & 0 & 0 \\
+        0 & \varepsilon-3 & 0 & 0 \\
+        0 & 0             & 1 & 0 \\
+        0 & 0             & 0 & 1 \\
+    \end{bmatrix}
+    \succeq 0.
+\end{equation*}
+
+\newpage
+
+\section{Robinson polynomial}
+
+We recall a polynomial of Robinson \cite{robinson1973some}
+\begin{equation*}
+    f_R = x^6 + y^6 + z^6 - x^4 y^2 - x^4 z^2 - y^4 x^2 - y^4 z^2 - z^4 x^2 - z^4 y^2 + 3 x^2 y^2 z^2
+\end{equation*}
+which is non-negative, but not a sum of squares.
+Consider the perturbation
+\begin{align*}
+    f
+     & = (1 - \varepsilon) f_R + \varepsilon (x^2 + y^2 + z^2)^3                                                                                                 \\
+     & = (1 + \varepsilon) (x^6 + y^6 + z^6) + (-1 + 3\varepsilon) (x^4 y^2 + x^4 z^2 + y^4 x^2 + y^4 z^2 + z^4 x^2 + z^4 y^2) + (3 + 6\varepsilon) x^2 y^2 z^2.
+\end{align*}
+We would like to check if $f$ admits a sum of squares decomposition
+with respect to the monomial basis
+\begin{equation*}
+    \beta^T
+    = (x^3, x y^2, y^3, x^2 z, y^2 z, z^3),
+\end{equation*}
+which is equivalent to checking if there exists
+$W\in\mathbb{S}_{6}(\mathbb{R})$
+such that
+\begin{equation*}
+    W \succeq 0, \quad f = \beta^T W \beta.
+\end{equation*}
+
+Note that we can drop the constraint by writing $W = (x_{ij})$,
+and substituting the linear conditions $f = \beta^T W \beta$ into $W$.
+By doing so, we obtain a linear matrix inequality $A \succeq 0$,
+where
+\begin{align*}
+    A & =
+    \begin{pmatrix}
+        1                         & -\frac{1}{2}+2\varepsilon & 0 & 0                                  & -x_{24}                            & 0                         \\
+        -\frac{1}{2}+2\varepsilon & -1+4\varepsilon           & 0 & x_{24}                             & 0                                  & 0                         \\
+        0                         & 0                         & 1 & 0                                  & 0                                  & 0                         \\
+        0                         & x_{24}                    & 0 & -1+4\varepsilon                    & \frac{3}{2}+\frac{3}{2}\varepsilon & -\frac{1}{2}+2\varepsilon \\
+        -x_{24}                   & 0                         & 0 & \frac{3}{2}+\frac{3}{2}\varepsilon & -1+4\varepsilon                    & -\frac{1}{2}+2\varepsilon \\
+        0                         & 0                         & 0 & -\frac{1}{2}+2\varepsilon          & -\frac{1}{2}+2\varepsilon          & 1
+    \end{pmatrix}.
+\end{align*}
+
+For $\varepsilon=\frac{19}{16}$,
+we can show that $A(\varepsilon,x_{24}) \succeq 0 \iff x_{24} = 0$,
+where
+\begin{align*}
+    A(\varepsilon,x_{24}) & =
+    \begin{pmatrix}
+        1            & \frac{15}{8} & 0 & 0              & 0              & 0            \\
+        \frac{15}{8} & \frac{15}{4} & 0 & 0              & 0              & 0            \\
+        0            & 0            & 1 & 0              & 0              & 0            \\
+        0            & 0            & 0 & \frac{15}{4}   & \frac{105}{32} & \frac{15}{8} \\
+        0            & 0            & 0 & \frac{105}{32} & \frac{15}{4}   & \frac{15}{8} \\
+        0            & 0            & 0 & \frac{15}{8}   & \frac{15}{8}   & 1            \\
+    \end{pmatrix},
+\end{align*}
+from which we easily obtain a sum of squares decomposition
+\begin{equation*}
+    -\frac{3}{16} f_R + \frac{19}{16} (x^2+y^2+z^2)^3
+    = \left(x^3+\frac{15 x y^2}{8}\right)^2+\frac{15}{4}\left(x^2 z+\frac{7 y^2 z}{8}+\frac{z^3}{2}\right)^2+\frac{15}{64}\left(x y^2\right)^2+\left(y^3\right)^2+\frac{225}{256}\left(y^2 z+\frac{4 z^3}{15}\right)^2.
+\end{equation*}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
