@@ -10,18 +10,22 @@ Version: February 2025
 
 #### Folder organization & files
 
-(1) [Sums-of-squares examples](SOS.pdf):
+List of examples: [pdf](examples.pdf) [tex](examples.tex)
 
+(1) Sums-of-squares examples
 
-(2) [Algorithm analysis](LMI_for_algorithm_analysis.pdf): 
-- main document [Algorithm analysis (pdf)](LMI_for_algorithm_analysis.pdf) and its source [Algorithm analysis (tex)](LMI_for_algorithm_analysis.tex),
-- mathematica notebook for generating the LMI for the proximal-point method: [proximal point](Example_Proximal_Point.nb),
-- mathematica notebook for generating the LMI for the gradient method: [gradient method](Example_Gradient_Descent.nb).
+- Main document: [pdf](sos.pdf) [tex](sos.tex)
+- Maple program for generating the LMIs: [code](solvelincond.mpl)
+
+(2) Algorithm analysis
+
+- Main document: [pdf](LMI_for_algorithm_analysis.pdf) [tex](LMI_for_algorithm_analysis.tex)
+- Wolfram notebook for generating the LMI for the proximal-point method: [notebook](Example_Proximal_Point.nb)
+- Wolfram notebook for generating the LMI for the gradient method: [notebook](Example_Gradient_Descent.nb)
 
 #### Authors
-- [**Simone Naldi**](https://www.unilim.fr/pages_perso/simone.naldi/) 
+
+- [**Simone Naldi**](https://www.unilim.fr/pages_perso/simone.naldi/)
 - [**Mohab Safey El Din**](https://polsys.lip6.fr/~safey/)
-- [**Adrien Taylor**](http://www.di.ens.fr/~ataylor/) 
-- [**Weijia Wang**](https://perso.lip6.fr/Weijia.Wang/)
-
-
+- [**Adrien Taylor**](http://www.di.ens.fr/~ataylor/)
+- [**Weijia Wang**](https://polsys.lip6.fr/~weijia/)
