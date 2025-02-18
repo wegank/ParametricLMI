@@ -1,16 +1,38 @@
-\documentclass{article}
+\documentclass[nonacm]{acmart}
 \usepackage{graphicx} % Required for inserting images
-\usepackage{amssymb,amsfonts,amsmath}
 \usepackage{xcolor}
 \usepackage{framed}
-\usepackage{theorem}
-\usepackage[margin=2cm]{geometry}
-\usepackage{hyperref}
 
-\title{Examples of parametric linear matrix inequalities for algorithm analysis\footnote{This note comes along as a complement to the paper ``\emph{Solving generic parametric linear matrix inequalities}'' by the same authors.}}
-\author{Simone Naldi\footnote{Université de Limoges, CNRS, XLIM,
-Limoges, France.}, Mohab Safey El Din\footnote{Sorbonne Université, CNRS, LIP6, Paris, France.}, Adrien Taylor\footnote{Inria, \'Ecole normale sup\'erieure, PSL Research University Paris, France.}, Weijia Wang\footnote{Sorbonne Université, CNRS, LIP6, Paris, France.}}
+\title{Examples of parametric linear matrix inequalities for algorithm analysis}
+\titlenote{This note comes along as a complement to the paper ``\emph{Solving generic parametric linear matrix inequalities}'' by the same authors.}
 
+\author{Simone Naldi}
+\affiliation{
+    \institution{Université de Limoges, CNRS, XLIM}
+    \city{Limoges}
+    \country{France}
+}
+
+\author{Mohab Safey El Din}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Adrien Taylor}
+\affiliation{
+    \institution{Inria, École normale supérieure, PSL Research University}
+    \city{Paris}
+    \country{France}
+}
+
+\author{Weijia Wang}
+\affiliation{
+    \institution{Sorbonne Université, CNRS, LIP6}
+    \city{Paris}
+    \country{France}
+}
 
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
@@ -148,7 +170,7 @@ which has 4 parameters ($0< \mu\leq \beta<\infty$, and $\rho$, $\theta$) and 2 v
 
 This LMI was proposed in~\cite[SM3.1.1.]{ryu2020operator} and its solution is described in~\cite[Theorem 4.1]{ryu2020operator} (the proofs require about $13$ pages in the appendix, the parameter regions are illustrated in~\cite[Figure 3]{ryu2020operator}).
 
-\bibliography{mybib}{}
+\bibliography{refs}{}
 \bibliographystyle{abbrv}
 \end{document}
 
