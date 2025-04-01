@@ -1,0 +1,4 @@
+lambdamuA,lambdaLB,lambdamuB
+lambdaLB-1+rhosquare,1/2*lambdamuA-theta,theta-lambdaLB-1/2*lambdamuB
+1/2*lambdamuA-theta,mu*lambdamuA-theta^2+lambdamuA,theta^2-lambdamuA
+theta-lambdaLB-1/2*lambdamuB,theta^2-lambdamuA,-theta^2-Lsquare*lambdaLB+lambdaLB+lambdamuB

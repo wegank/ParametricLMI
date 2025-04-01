@@ -1,0 +1,4 @@
+lambdamuA,lambdabetaB
+beta*lambdabetaB+rhosquare-1,1/2*lambdamuA-1,1-(1/2+beta)*lambdabetaB
+1/2*lambdamuA-1,-1+(1+mu)*lambdamuA,-lambdamuA+1
+1-(1/2+beta)*lambdabetaB,-lambdamuA+1,-1+(1+beta)*lambdabetaB
