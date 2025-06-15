@@ -1,0 +1,4 @@
+lambda1,lambda4,lambda5,tau
+-mu^3*tau+2*mu^3*lambda5+mu^3-2*mu^2*tau+4*mu^2*lambda5+2*mu^2-mu*tau+2*mu*lambda5+mu,-mu^3*lambda5+mu^2*tau-mu^2*lambda1-3*mu^2*lambda5-mu^2+2*mu*tau-3*mu*lambda5-2*mu+tau+lambda1-lambda5-1,-mu^2*lambda1-2*mu*lambda1-lambda1
+-mu^3*lambda5+mu^2*tau-mu^2*lambda1-3*mu^2*lambda5-mu^2+2*mu*tau-3*mu*lambda5-2*mu+tau+lambda1-lambda5-1,-mu^2*tau+2*mu^2*lambda1-2*mu^2*lambda4+2*mu^2*lambda5-2*mu^2-2*mu*tau+4*mu*lambda4+4*mu*lambda5+4*mu-tau-2*lambda1-2*lambda4+2*lambda5+2,mu^2*lambda1-mu^2+2*mu*lambda1+lambda1+1
+-mu^2*lambda1-2*mu*lambda1-lambda1,mu^2*lambda1-mu^2+2*mu*lambda1+lambda1+1,2*mu^2*lambda4+mu^2+4*mu*lambda4+2*mu+2*lambda4+1

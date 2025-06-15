@@ -1,0 +1,4 @@
+lambda1,tau
+-mu^3*tau+mu^3-2*mu^2*tau+2*mu^2-mu*tau+mu,mu^2*tau-mu^2*lambda1-mu^2+2*mu*tau-2*mu+tau+lambda1-1,-mu^2*lambda1-2*mu*lambda1-lambda1
+mu^2*tau-mu^2*lambda1-mu^2+2*mu*tau-2*mu+tau+lambda1-1,-mu^2*tau+2*mu^2*lambda1-2*mu^2-2*mu*tau+4*mu-tau-2*lambda1+2,mu^2*lambda1-mu^2+2*mu*lambda1+lambda1+1
+-mu^2*lambda1-2*mu*lambda1-lambda1,mu^2*lambda1-mu^2+2*mu*lambda1+lambda1+1,mu^2+2*mu+1
