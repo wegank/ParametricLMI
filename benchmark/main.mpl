@@ -34,5 +34,20 @@ TimeQE1 := proc(fname::string)::double;
     t1 - t0
 end proc:
 
+read("src/solvelmi.mpl"):
+
+TimeO1 := proc(fname::string)::double;
+    local data, vars, params, A, Phi, t0, t1;
+    data := ReadFromFile(fname);
+    vars := data[1];
+    A := Matrix(data[2..-1]);
+    params := convert(indets(A) minus convert(vars, set), list);
+    A := LinearMatrix(A, params, vars);
+    t0 := time();
+    Phi := ParametricSolveLMI(A):
+    t1 := time();
+    t1 - t0
+end proc:
+
 # Example usage:
 # TimeQE1("examples/data/mkn11.dat");
