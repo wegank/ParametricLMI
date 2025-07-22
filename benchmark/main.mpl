@@ -1,8 +1,8 @@
 interface(errorbreak=3):
 kernelopts(assertlevel=1):
 
-TimeQE1 := proc(fname::string)::double;
-    local f, data, line, vars, A, m, g, Phi, g_i, t0, t1;
+ReadFromFile := proc(fname::string)::list;
+    local f, data, line;
     f := fopen(fname, READ);
     data := [];
     while not feof(f) do
@@ -13,6 +13,12 @@ TimeQE1 := proc(fname::string)::double;
         data := [op(data), map(parse, StringTools:-Split(line, ","))];
     end do;
     fclose(f);
+    data
+end proc:
+
+TimeQE1 := proc(fname::string)::double;
+    local data, vars, A, m, g, Phi, g_i, t0, t1;
+    data := ReadFromFile(fname);
     vars := data[1];
     A := Matrix(data[2..-1]);
     m := LinearAlgebra:-RowDimension(A);
