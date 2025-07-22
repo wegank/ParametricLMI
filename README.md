@@ -27,5 +27,5 @@ List of examples: [pdf](doc/examples.pdf) [tex](doc/examples.tex)
 
 - [Simone Naldi](https://www.unilim.fr/pages_perso/simone.naldi/)
 - [Mohab Safey El Din](https://polsys.lip6.fr/~safey/)
-- [Adrien Taylor](http://www.di.ens.fr/~ataylor/)
+- [Adrien Taylor](https://www.di.ens.fr/~ataylor/)
 - [Weijia Wang](https://polsys.lip6.fr/~weijia/)
